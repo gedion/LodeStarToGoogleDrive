@@ -4,8 +4,13 @@ class Page {
 
   constructor (options = {}) {
     this._options = options;
+    this.type = _.get(options, 'entrydata[0].input[0]._text') || 'Page';
     this.setTitle();
     this.setTotalPoints();
+  }
+
+  getType () {
+    return this.type;
   }
 
   getTotalPoints () {

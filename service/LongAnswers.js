@@ -18,6 +18,7 @@ class LongAnswers {
 
   getFormData () {
     return _.map(this.longAnswers, (longAnswer) => ({
+      type: longAnswer.getType(),
       title: longAnswer.getTitle(),
       points: longAnswer.getTotalPoints(),
       heading: longAnswer.getHeading(),

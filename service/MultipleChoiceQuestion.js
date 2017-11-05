@@ -42,14 +42,21 @@ class MultipleChoiceQuestion extends Page {
 
   setChoices (choices = null) {
     this.choices = choices;
+    let textAreas = [];
+    let checkboxes = [];
+    if (_.includes(['Question (Layout B)','Multiple Choice Question' ],this.type)) {
+      textAreas = ['TextArea_3', 'TextArea_4', 'TextArea_5', 'TextArea_6', 'TextArea_7'];
+      checkboxes = ['Checkbox_1', 'Checkbox_2', 'Checkbox_3', 'Checkbox_4', 'Checkbox_5'];
+    } else if (this.type == 'Question (Layout C)') {
+      textAreas = ['TextArea_3', 'TextArea_4', 'TextArea_5'];
+      checkboxes = ['Checkbox_1', 'Checkbox_2', 'Checkbox_3'];
+    }
     if (_.isEmpty(this.choices)) {
       let choiceOptions = _.filter(this._options.entrydata, (o) => {
-        return _.includes(['TextArea_3', 'TextArea_4', 'TextArea_5', 'TextArea_6', 'TextArea_7'],
-          _.get(o, 'input[0]._attr.optionStore._value'));
+        return _.includes(textAreas, _.get(o, 'input[0]._attr.optionStore._value'));
       });
       let choiceCheckBoxOptions = _.filter(this._options.entrydata, (o) => {
-        return _.includes(['Checkbox_1', 'Checkbox_2', 'Checkbox_3', 'Checkbox_4', 'Checkbox_5'],
-          _.get(o, 'input[0]._attr.optionStore._value'));
+        return _.includes(checkboxes, _.get(o, 'input[0]._attr.optionStore._value'));
       });
       this.choices =  new Choices(choiceOptions, choiceCheckBoxOptions);
     }

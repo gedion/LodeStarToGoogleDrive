@@ -1,6 +1,9 @@
-const FlashCards = require('./FlashCards.js');
-const MultipleChoiceQuestions = require('./MultipleChoiceQuestions.js');
-const LongAnswers = require('./LongAnswers.js');
+const FlashCards = require('./FlashCards');
+const MultipleChoiceQuestions = require('./MultipleChoiceQuestions');
+const LongAnswers = require('./LongAnswers');
+const Categories = require('./Categories');
+const Matchings = require('./Matchings');
+
 const _ = require('lodash');
 
 class LodeStar {
@@ -10,23 +13,30 @@ class LodeStar {
     this.flashCards =  new FlashCards(options);
     this.multipleChoiceQuestions =  new MultipleChoiceQuestions(options);
     this.longAnswers =  new LongAnswers(options);
+    this.categories =  new Categories(options);
+    this.matchings =  new Matchings(options);
   }
 
   createPages () {
     return {
       flashCards: this.flashCards.getFormData(),
       multipleChoiceQuestions: this.multipleChoiceQuestions.getFormData(),
-      longAnswers : this.longAnswers.getFormData()
+      longAnswers : this.longAnswers.getFormData(),
+      categories: this.categories.getFormData(),
+      matchings: this.matchings.getFormData()
     }
   }
 
   toString () {
       return `
-      projectName: ${this.projectName},
+        projectName: ${this.projectName},
         flashCards: ${this.flashCards.toString()}
-        MultipleChoiceQuestions: ${this.multipleChoiceQuestions.toString()}
+        multipleChoiceQuestions: ${this.multipleChoiceQuestions.toString()}
+        categories: ${this.categories.toString()}
+        matchings: ${this.matchings.toString()}
     `;
   }
+
 }
 
 module.exports = LodeStar;

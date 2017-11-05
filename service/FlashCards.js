@@ -19,6 +19,7 @@ class FlashCards {
 
   getFormData () {
     return _.map(this.cards, (card) => ({
+      type: card.getType(),
       title: card.getTitle(),
       description: card.getDesc(),
       points: card.getTotalPoints(),

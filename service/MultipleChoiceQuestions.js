@@ -10,7 +10,8 @@ class MultipleChoiceQuestions {
     let question;
     _.each(options, (option) => {
       if (_.get(option, 'entrydata[0].input[0]._text') == 'Multiple Choice Question' ||
-          _.get(option, 'entrydata[0].input[0]._text') == 'Question (Layout B)'
+          _.get(option, 'entrydata[0].input[0]._text') == 'Question (Layout B)' ||
+          _.get(option, 'entrydata[0].input[0]._text') == 'Question (Layout C)'
           ) {
         question = new MultipleChoiceQuestion(option);
         this.questions.push(question);
@@ -20,6 +21,7 @@ class MultipleChoiceQuestions {
 
   getFormData () {
     return _.map(this.questions, (question) => ({
+      type: question.getType(),
       title: question.getTitle(),
       points: question.getTotalPoints(),
       questionStem: question.getQuestionStem(),
