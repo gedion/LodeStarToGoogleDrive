@@ -3,6 +3,10 @@ const MultipleChoiceQuestions = require('./MultipleChoiceQuestions');
 const LongAnswers = require('./LongAnswers');
 const Categories = require('./Categories');
 const Matchings = require('./Matchings');
+const Menus = require('./Menus');
+const Crosswords = require('./Crosswords');
+const ShortAnswers = require('./ShortAnswers');
+const VideoScenarios = require('./VideoScenarios');
 
 const _ = require('lodash');
 
@@ -15,6 +19,11 @@ class LodeStar {
     this.longAnswers =  new LongAnswers(options);
     this.categories =  new Categories(options);
     this.matchings =  new Matchings(options);
+    this.menus =  new Menus(options);
+    this.crosswords =  new Crosswords(options);
+    this.shortAnswers =  new ShortAnswers(options);
+    this.videoScenarios =  new VideoScenarios(options);
+
   }
 
   createPages () {
@@ -23,17 +32,25 @@ class LodeStar {
       multipleChoiceQuestions: this.multipleChoiceQuestions.getFormData(),
       longAnswers : this.longAnswers.getFormData(),
       categories: this.categories.getFormData(),
-      matchings: this.matchings.getFormData()
+      matchings: this.matchings.getFormData(),
+      menus: this.menus.getFormData(),
+      crosswords: this.crosswords.getFormData(),
+      shortAnswers: this.shortAnswers.getFormData(),
+      videoScenarios: this.videoScenarios.getFormData()
     }
   }
 
   toString () {
-      return `
+    return `
         projectName: ${this.projectName},
         flashCards: ${this.flashCards.toString()}
         multipleChoiceQuestions: ${this.multipleChoiceQuestions.toString()}
         categories: ${this.categories.toString()}
         matchings: ${this.matchings.toString()}
+        menus: ${this.menus.toString()}
+        crosswords: ${this.crosswords.toString()}
+        shortAnswers: ${this.shortAnswers.toString()}
+        videoScenarios: ${this.videoScenarios.toString()}
     `;
   }
 
