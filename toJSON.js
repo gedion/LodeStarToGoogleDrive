@@ -11,6 +11,7 @@ xmlToJSON.stringToXML = function (string) {
 };
 
 let lodeStarXml = xmlToJSON.parseString(xmlStr);
+fs.writeFileSync('/Users/wolde034/Desktop/lodestar.json', JSON.stringify(lodeStarXml, null, 4));
 let lodeStar = new LodeStar(lodeStarXml);
 
-console.log('project name ', lodeStar.toString());
+console.log('project name ', JSON.stringify(lodeStar.createPages(), null, 4));

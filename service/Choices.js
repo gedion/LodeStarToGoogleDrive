@@ -14,6 +14,14 @@ class Choices {
 
   }
 
+  getLength () {
+    return _.size(this.choices);
+  }
+
+  setCorrect (index) {
+    this.choices[index].setCorrect(true);
+  }
+
   getFormData () {
     return _.map(this.choices , (choice) => ({
       value: choice.getValue(),
